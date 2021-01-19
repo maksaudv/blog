@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,8 +18,8 @@ use App\Http\Controllers\PostController;
 Route::redirect('/', 'posts');
 
 Route::prefix('posts')->group(function () {
-    Route::get('create', [PostController::class, 'edit'])->name('posts.create');
-    Route::put('/', [PostController::class, 'update'])->name('posts.store');
+    Route::get('create', [PostController::class, 'create'])->name('posts.create');
+    Route::post('/', [PostController::class, 'store'])->name('posts.store');
 });
 
 Route::prefix('posts/{category:slug?}')->group(function () {
@@ -31,4 +32,11 @@ Route::prefix('posts/{category:slug?}')->group(function () {
 
 Route::resource('categories', CategoryController::class)->scoped([
     'category' => 'slug',
-]);;
+]);
+
+Route::get('/login', function () {
+    return view('auth.login');
+})->name('login');
+
+
+Route::post('/login', [UserController::class, 'authenticate'])->name('user.auth');

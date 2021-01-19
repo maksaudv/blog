@@ -8,7 +8,7 @@
             <strong>Edit post</strong>
         </div>
         <div class="card-body card-block">
-            <form action="{{ route('posts.update', [$post->category, $post]) }}" method="post">
+            <form action="{{ route('posts.update', [$post->category, $post]) }}" method="post" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
                 
@@ -37,18 +37,26 @@
                         </select>
                     </div>
                 </div>
-
                 <div class="row form-group">
                     <div class="col col-md-3">
-                        <label class="form-control-label" for="title">Content</label>
+                        <label class="form-control-label" for="content">Content</label>
                     </div>
                     <div class="col-12 col-md-9">
                         <textarea name="content" id="content" rows="9" placeholder="Content..." class="form-control">{{ $post->title }}</textarea>
                     </div>
                 </div>
+                <div class="row form-group">
+                    <div class="col col-md-3">
+                        <label class="form-control-label" for="image">Image</label>
+                    </div>
+                    <div class="col-12 col-md-9">
+                        <input type="file" name="image" id="image" required class="form-control">
+                    </div>
+                </div>
                 <div class="card-footer">
                     <button type="submit" class="btn btn-primary btn-sm">
-                        <i class="fa fa-dot-circle-o"></i> Save
+                        <i class="fa fa-dot-circle-o"></i>
+                        Save 
                     </button>
                 </div>
             </form>
