@@ -23,7 +23,7 @@
     <label for="content">Content</label>
     <input type="text" name="content" id="content">
 
-    <input type="submit" value="Submit">
+    <input type="submit" value="Create">
 </form>
 
 @endsection

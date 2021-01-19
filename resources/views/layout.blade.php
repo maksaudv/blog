@@ -6,6 +6,10 @@
     <title>Document</title>
 </head>
 <body>
+    <header>
+        <a href="{{ route('posts.index') }}">Posts</a>
+        <a href="{{ route('categories.index') }}">Categories</a>
+    </header>
     @yield('content')
 </body>
 </html>
