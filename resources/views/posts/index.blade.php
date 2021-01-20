@@ -13,7 +13,7 @@
                 </small>
             </strong>
         </div>
-        <img class="card-img-top" src="images/bg-title-01.jpg" alt="Card image cap">
+        <img class="card-img-top" src="{{ $post->image }}" alt="Card image cap">
         <div class="card-body">
             <p class="card-text">{{ $post->content }}</p>
             <a href="{{ route('posts.edit', $post) }}">Edit post</a>

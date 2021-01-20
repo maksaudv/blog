@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         // \App\Models\User::factory(10)->create();
         Category::factory(10)->create();
-        Post::factory(30)->create();
+        Post::factory(20)->create();
         DB::table('users')->insert([
             'name' => 'admin',
             'email' => 'admin@gmail.com',

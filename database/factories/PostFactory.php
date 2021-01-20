@@ -27,7 +27,8 @@ class PostFactory extends Factory
             'category_id' => rand(1, 10),
             'title' => $title,
             'slug' => Str::slug($title),
-            'content' => $this->faker->text(rand(100, 255))
+            'content' => $this->faker->text(rand(100, 255)),
+            'image' => '/images/bg-title-01.jpg'
         ];
     }
 }
