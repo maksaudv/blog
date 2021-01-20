@@ -15,14 +15,13 @@ class CategoryController extends Controller
     }
 
     function create() {
-        return view('categories.create')->with('categories', Category::all());
+        return view('categories.create');
     }
 
     function store(Request $request) {
         $slug = Str::slug($request['name']);
-        Category::create(array_merge($request->all(), compact('slug')));
-        return redirect()->route('categories.index')
-            ->with('success', 'Category created successfully.');
+        $category = Category::create(array_merge($request->all(), compact('slug')));
+        return redirect()->route('categories.index')->with('success', 'Category created successfully.');
     }
 
     function show(Category $category) {
@@ -37,13 +36,11 @@ class CategoryController extends Controller
     function update(Request $request, Category $category) {
         $slug = Str::slug($request['name']);
         $category->update(array_merge($request->all(), compact('slug')));
-        return redirect()->route('categories.index')
-            ->with('success', 'Category updated successfully');
+        return redirect()->route('categories.index')->with('success', 'Category updated successfully');
     }
 
     function destroy(Category $category) {
         Category::destroy($category->id);
-        return redirect()->route('categories.index')
-            ->with('success', 'Category deleted successfully');
+        return redirect()->route('categories.index')->with('success', 'Category deleted successfully');
     }
 }

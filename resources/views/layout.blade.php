@@ -87,10 +87,13 @@
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
                     <ul class="list-unstyled navbar__list">
-                        <li>Categories</li>
+                        <li><strong><a href="{{ route('categories.index') }}">Categories</strong></a></li>
                         <hr>
-                        @yield('categories')
-
+                        @foreach($categories as $category)
+                        <li>
+                            <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
+                        </li>
+                        @endforeach
                     </ul>
                 </nav>
             </div>

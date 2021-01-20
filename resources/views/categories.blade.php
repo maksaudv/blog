@@ -1,7 +1,7 @@
 @section('categories')
-@foreach($categories as $category)
+@foreach(Category::all() as $category)
 <li>
-    <a href="{{ route('posts.index', $category) }}">{{ $category->name }}</a>
+    <a href="{{ route('categories.show', $category) }}">{{ $category->name }}</a>
 </li>
 @endforeach
 @endsection

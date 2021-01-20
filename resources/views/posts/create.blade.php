@@ -49,7 +49,7 @@
                         <label class="form-control-label" for="image">Image</label>
                     </div>
                     <div class="col-12 col-md-9">
-                        <input type="file" name="image" id="image" required class="form-control">
+                        <input type="file" name="image" id="image" class="form-control">
                     </div>
                 </div>
                 <div class="card-footer">

@@ -9,43 +9,41 @@ use Illuminate\Support\Str;
 
 class PostController extends Controller
 {
-    function index(Category $category = null) {
-        $posts = $category ? $category->posts : Post::all();
+    function index() {
         return view('posts.index', [
-            'posts' => $posts,
-            'categories' => Category::all(),
+            'posts' => Post::all(),
             ]);
     }
 
     function create() {
-        return view('posts.create')->with('categories', Category::all());
+        return view('posts.create');
     }
 
     function store(Request $request) {  
 
         $slug = Str::slug($request['title']);
-        Post::create(array_merge($request->all(), compact('slug')));
-        return redirect()->route('posts.index')
-            ->with('success', 'Post created successfully.');
+        $post = Post::create(array_merge($request->all(), compact('slug')));
+        return redirect()->route('posts.show', ['post' => $post,
+                                                'category' => $post->category,
+                                                'success' => 'Post updated successfully']);
     }
 
-    function show(Category $category, Post $post) {
+    function show(Post $post) {
         return view('posts.show', compact('post'));
     }
 
-    function edit(Category $category, Post $post) {
-        return view('posts.edit', ['post' => $post,
-                                   'categories' => Category::all()]);
+    function edit(Post $post) {
+        return view('posts.edit', ['post' => $post]);
     }
 
-    function update(Request $request, Category $category, Post $post) {
+    function update(Request $request, Post $post) {
         $slug = Str::slug($request['title']);
         $post->update(array_merge($request->all(), compact('slug')));
         return redirect()->route('posts.show', ['post' => $post,
                                                 'success' => 'Post updated successfully']);
     }
 
-    function destroy(Category $category, Post $post) {
+    function destroy(Post $post) {
         Post::destroy($post->id);
         return redirect()->route('posts.index')
             ->with('success', 'Post deleted successfully');
